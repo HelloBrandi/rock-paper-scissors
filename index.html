@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock, Paper, Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+// Create a global array for the computer to chose from.
+const playChoices = ['rock', 'paper', 'scissors'];
+
+// Create global variables to track game score.
+let playerScore = 0;
+let computerScore = 0;
+let tie = 0;
+
+// Computer randomly selects rock paper scissors that are case insensitive.
+function computerPlay() {
+  
+  return playChoices[Math.floor(Math.random() * playChoices.length)].toLowerCase();
+}
+// Play a single round of rock, paper, scissors.
+function gameRound(playerSelection, computerSelection) {
+
+if (playerSelection === computerSelection) {
+  console.log('It\'s a tie!');
+return tie++;
+
+}
+else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+  console.log('Sorry! Scissors SHREDS Paper. You lose this round!' );
+return computerScore++;
+}
+else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+  console.log('Oh no! Rock SMASHES Scissors. You lose this round!');
+  return computerScore++;
+}
+else if (playerSelection == 'rock' && computerSelection == 'paper') {
+  console.log('Yikes! Paper SMOTHERS Rock. You lose this round!');
+  return computerScore++;
+}
+else if (computerSelection == 'paper' && playerSelection == 'scissors' || 
+          computerSelection == 'scissors' && playerSelection == 'rock' || 
+          computerSelection == 'rock' && playerSelection == 'paper') {
+
+  console.log('Great Job! You win this round!');
+  return playerScore++;
+}
+else {
+  console.log('Invalid selection.');
+}
+}
+// Best of five rounds / player prompt input is case insensitive.
+function game() {
+  for (let i = 0; i < 5; i++) {
+  let playerSelection = prompt('Rock, Paper or Scissors?').toLowerCase();
+  let computerSelection = computerPlay();
+  console.log(gameRound(playerSelection, computerSelection))
+  }
+// Compare scores and determine winner.
+if (playerScore > computerScore) { 
+  console.log('You Won The Game!');
+}
+else if (playerScore === computerScore) {
+  console.log('Draw Game!');
+}
+else {
+  console.log('Computer Wins the Game!');
+}
+  }
+  
+  console.log(game());
+  </script>
+
+</body>
+</html>
